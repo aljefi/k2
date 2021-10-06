@@ -3,7 +3,7 @@ import java.util.*;
 /**
  * Comparison of sorting methods. The same array of double values is
  * used for all methods.
- * 
+ *
  * @author Jaanus
  * @version 1.0
  * @since 1.6
@@ -18,7 +18,7 @@ public class DoubleSorting {
 
    /**
     * Main method.
-    * 
+    *
     * @param args
     *           command line parameters
     */
@@ -82,7 +82,7 @@ public class DoubleSorting {
 
    /**
     * Insertion sort.
-    * 
+    *
     * @param a
     *           array to be sorted
     */
@@ -103,17 +103,30 @@ public class DoubleSorting {
 
    /**
     * Binary insertion sort.
-    * 
+    *
     * @param a
     *           array to be sorted
     */
    public static void binaryInsertionSort(double[] a) {
-      // TODO!!!
+      if (a.length < 2)
+         return;
+
+      for(int barrier = 1; barrier < a.length; barrier++)
+      {
+         double new_element = a[barrier];
+
+         int location = Arrays.binarySearch(a, 0, barrier, new_element);
+
+         int insert_index = (location >= 0) ? location : (-location - 1);
+
+         System.arraycopy(a, insert_index, a, insert_index + 1, barrier - insert_index);
+         a[insert_index] = new_element;
+      }
    }
 
    /**
     * Merge sort.
-    * 
+    *
     * @param array
     *           array to be sorted
     * @param left
@@ -134,7 +147,7 @@ public class DoubleSorting {
 
    /**
     * Merge two intervals.
-    * 
+    *
     * @param array
     *           original
     * @param left
@@ -177,7 +190,7 @@ public class DoubleSorting {
 
    /**
     * Sort a part of the array using quicksort method.
-    * 
+    *
     * @param array
     *           array to be changed
     * @param l
@@ -214,7 +227,7 @@ public class DoubleSorting {
 
    /**
     * Check whether an array is ordered.
-    * 
+    *
     * @param a
     *           sorted (?) array
     * @throws IllegalArgumentException
@@ -226,9 +239,8 @@ public class DoubleSorting {
       for (int i = 0; i < a.length - 1; i++) {
          if (a[i] > a[i + 1])
             throw new IllegalArgumentException(
-                  "array not ordered: " + "a[" + i + "]=" + a[i] + " a[" + (i + 1) + "]=" + a[i + 1]);
+                    "array not ordered: " + "a[" + i + "]=" + a[i] + " a[" + (i + 1) + "]=" + a[i + 1]);
       }
    }
 
 }
-
