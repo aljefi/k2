@@ -211,6 +211,7 @@ public class DoubleSorting {
             i++;
          while (x < array[j])
             j--;
+
          if (i <= j) {
             double tmp = array[i];
             array[i] = array[j];
